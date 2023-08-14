@@ -1,0 +1,30 @@
+import { Link } from "react-router-dom";
+
+/* eslint-disable react/prop-types */
+const Item = ({ producto }) => {
+    return (
+        <div className="bg-white">
+            <div className="mx-auto max-w-2xl px-4 py-4 sm:px-4 sm:py-12 lg:max-w-6xl lg:px-8">
+                <h2 className="sr-only">Products</h2>
+                <div className="group border-gris border p-2 rounded-md">
+                    <div className="border-b border-gris aspect-h-1 aspect-w-1 w-full overflow-hidden bg-gray-200 xl:aspect-h-8 xl:aspect-w-7">
+                        <img
+                            src={producto.href}
+                            alt={producto.imagenAlt}
+                            className="h-full w-full object-contain object-center"
+                            style={{ aspectRatio: '1 / 1' }}
+                        />
+                        <h3 className="mt-4 text-xlg text-black font-semibold">{producto.name}</h3>
+                        <p className="mt-1 text-xl py-2 font-medium text-black">$ {producto.price}</p>
+                        <div className="flex flex-row justify-between">
+                            <button className="bg-verdeOscuro text-white p-1 px-3 rounded-md w-max mt-1">Agregar al Carrito</button>
+                            <Link to={`/item/${producto.id}`} className="bg-black text-white p-1 px-3 rounded-md w-max mt-1">+ info</Link>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+};
+
+export default Item;

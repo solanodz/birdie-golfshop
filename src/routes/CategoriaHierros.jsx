@@ -1,9 +1,10 @@
-import CallawayNegra from '../assets/sin-fondo/bolsas/bolsa-callaway-negra.png'
-import CallawayAzul from '../assets/sin-fondo/bolsas/bolsa-callaway.png'
-import PowerbiltNegra from '../assets/sin-fondo/bolsas/bolsa-powerbilt.png'
-import TaylorMadeNegra from '../assets/sin-fondo/bolsas/bolsa-taylormade.png'
-import TitleistGris from '../assets/sin-fondo/bolsas/bolsa-titleist-gris.png'
-import TitleistAzul from '../assets/sin-fondo/bolsas/bolsa-titleist.png'
+import { Link } from 'react-router-dom'
+import HierrosApex from '../assets/sin-fondo/hierros/hierros-apex.png'
+import HierrosG425 from '../assets/sin-fondo/hierros/hierros-g425.png'
+import HierrosJPX911 from '../assets/sin-fondo/hierros/hierros-JPX-921.png'
+import HierrosParadym from '../assets/sin-fondo/hierros/hierros-paradym.png'
+import HierrosSteath from '../assets/sin-fondo/hierros/hierros-steath.png'
+import HierrosZx5 from '../assets/sin-fondo/hierros/hierros-zx5.png'
 
 
 
@@ -21,66 +22,66 @@ import TitleistAzul from '../assets/sin-fondo/bolsas/bolsa-titleist.png'
     }
     ```
 */
-const products = [
+const productsHierros = [
     {
         id: 1,
-        name: 'Bolsa Callaway Negra',
+        name: 'Callaway Callaway Apex',
         href: '#',
         price: '$20000',
-        imageSrc: CallawayNegra,
+        imageSrc: HierrosApex,
         imageAlt: 'Tall slender porcelain bottle with natural clay textured body and cork stopper.',
     },
     {
         id: 2,
-        name: 'Bolsa Callaway Azul',
+        name: 'Hierros Ping G425',
         href: '#',
         price: '$20000',
-        imageSrc: CallawayAzul,
+        imageSrc: HierrosG425,
         imageAlt: 'Tall slender porcelain bottle with natural clay textured body and cork stopper.',
     },
     {
         id: 3,
-        name: 'Bolsa Powerbilt Negra',
+        name: 'Hierros Mizuno JPX-911',
         href: '#',
         price: '$20000',
-        imageSrc: PowerbiltNegra,
+        imageSrc: HierrosJPX911,
         imageAlt: 'Tall slender porcelain bottle with natural clay textured body and cork stopper.',
     },
     {
         id: 4,
-        name: 'Bolsa TaylorMade Negra',
+        name: 'Hierros Callaway Paradym ',
         href: '#',
         price: '$20000',
-        imageSrc: TaylorMadeNegra,
+        imageSrc: HierrosParadym,
         imageAlt: 'Tall slender porcelain bottle with natural clay textured body and cork stopper.',
     },
     {
         id: 5,
-        name: 'Bolsa Titleist Gris',
+        name: 'Hierros TaylorMade Steath',
         href: '#',
         price: '$20000',
-        imageSrc: TitleistGris,
+        imageSrc: HierrosSteath,
         imageAlt: 'Tall slender porcelain bottle with natural clay textured body and cork stopper.',
     },
     {
         id: 6,
-        name: 'Bolsa Titleist Azul',
+        name: 'Hierros Srixon ZX5',
         href: '#',
         price: '$20000',
-        imageSrc: TitleistAzul,
+        imageSrc: HierrosZx5,
         imageAlt: 'Tall slender porcelain bottle with natural clay textured body and cork stopper.',
     },
     // More products...
 ]
 
-export default function CategoriaBolsas() {
+export default function CategoriaHierros() {
     return (
         <div className="bg-white">
             <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-6xl lg:px-8">
                 <h2 className="sr-only">Products</h2>
                 <div className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
-                    {products.map((product) => (
-                        <a key={product.id} href={product.href} className="group border-gris border p-2 rounded-md">
+                    {productsHierros.map((product) => (
+                        <Link key={product.id} to={product.href} className="group border-gris border p-2 rounded-md">
                             <div className="border-b  border-gris  aspect-h-1 aspect-w-1 w-full overflow-hidden  bg-gray-200 xl:aspect-h-8 xl:aspect-w-7">
                                 <img
                                     src={product.imageSrc}
@@ -95,7 +96,7 @@ export default function CategoriaBolsas() {
                                 <button className='bg-verdeOscuro text-white p-1 px-3 rounded-md w-max mt-1'>Agregar al Carrito</button>
                                 <button className='bg-black text-white p-1 px-3 rounded-md w-max mt-1'>+ info</button>
                             </div>
-                        </a>
+                        </Link>
                     ))}
                 </div>
             </div>
