@@ -8,7 +8,7 @@ import { faCartShopping } from "@fortawesome/free-solid-svg-icons"
 
 
 const Cart = () => {
-    const [open, setOpen] = useState(false); // Cambia a false inicialmente
+    const [open, setOpen] = useState(false);
 
     return (
         <div>
@@ -16,7 +16,7 @@ const Cart = () => {
                 icon={faCartShopping}
                 style={{ color: "#ffffff", }}
                 size='lg'
-                onClick={() => setOpen(true)} // Establecer el estado como true al hacer clic
+                onClick={() => setOpen(true)}
                 className='cursor-pointer'
             >
 
