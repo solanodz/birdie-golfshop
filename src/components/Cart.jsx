@@ -1,26 +1,35 @@
-import { Fragment, useState } from 'react'
+import { Fragment, useContext, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { XMarkIcon } from '@heroicons/react/24/outline'
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faCartShopping } from "@fortawesome/free-solid-svg-icons"
-
-
+import { faCartShopping, faBagShopping } from "@fortawesome/free-solid-svg-icons"
+import { Link } from 'react-router-dom'
+import { CartContext } from '../context/CartContext'
+import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
 
 const Cart = () => {
     const [open, setOpen] = useState(false);
+    const { cantidadEnCarrito } = useContext(CartContext)
+
+    const { carrito, precioTotal, vaciarCarrito, eliminarProducto } = useContext(CartContext);
+
+    const handleVaciar = () => {
+        vaciarCarrito();
+    }
 
     return (
         <div>
-            <FontAwesomeIcon
+
+            {/* <Link to="/carrito"> */}<FontAwesomeIcon
                 icon={faCartShopping}
                 style={{ color: "#ffffff", }}
                 size='lg'
                 onClick={() => setOpen(true)}
                 className='cursor-pointer'
             >
-
             </FontAwesomeIcon>
+            <span className='pl-3 pr-1'>{cantidadEnCarrito()}</span>
+            {/* </Link> */}
             {/* ------------------------------------------------------------------------------------------ */}
             <Transition.Root show={open} as={Fragment}>
                 <Dialog as="div" className="relative z-10" onClose={setOpen}>
@@ -48,7 +57,7 @@ const Cart = () => {
                                     leaveFrom="translate-x-0"
                                     leaveTo="translate-x-full"
                                 >
-                                    <Dialog.Panel className="pointer-events-auto relative w-screen max-w-md">
+                                    <Dialog.Panel className="pointer-events-auto bg-white relative w-screen max-w-lg">
                                         <Transition.Child
                                             as={Fragment}
                                             enter="ease-in-out duration-500"
@@ -58,10 +67,10 @@ const Cart = () => {
                                             leaveFrom="opacity-100"
                                             leaveTo="opacity-0"
                                         >
-                                            <div className="absolute left-0 top-0 -ml-8 flex pr-2 pt-4 sm:-ml-10 sm:pr-4">
+                                            <div className="absolute p-2 pr-1 sm:pr-1 mt-3 text-white rounded-es-lg rounded-tl-lg bg-black hover:bg-verdeOscuro duration-300 flex sm:p-2 -ml-9">
                                                 <button
                                                     type="button"
-                                                    className="relative rounded-md text-gray-300 hover:text-verdeOscuro focus:outline-none focus:ring-2 focus:verdeOscuro"
+                                                    className="relative items-center rounded-md text-gray-300 focus:outline-none focus:verdeOscuro"
                                                     onClick={() => setOpen(false)}
                                                 >
                                                     <span className="absolute -inset-2.5" />
@@ -70,13 +79,40 @@ const Cart = () => {
                                                 </button>
                                             </div>
                                         </Transition.Child>
-                                        <div className="flex h-full flex-col overflow-y-scroll bg-white py-6 shadow-xl">
+                                        <div className="flex h-full m-3 flex-col overflow-y-scroll bg-white rounded-lg py-6 shadow-xl">
                                             <div className="px-4 sm:px-6">
-                                                <Dialog.Title className="text-base font-semibold leading-6 text-gray-900">
+                                                <Dialog.Title className="text-3xl text-left pt-6 text-black rounded-lg font-bold py-1 pl-4">
                                                     Tu Carrito:
                                                 </Dialog.Title>
                                             </div>
-                                            <div className="relative mt-6 flex-1 px-4 sm:px-6">{/* Productos agregados al carrito */}</div>
+                                            <div className="relative mt-6 flex-1 px-4 sm:px-6">
+                                                <div>
+                                                    {
+                                                        carrito.map((prod) => (
+                                                            <div key={prod.id} className="pl-1 pb-2 flex flex-col sm:flex-row p-auto mx-2 bg-gris mb-2 rounded-xl sm:mx-2">
+                                                                <img src={prod.href} alt={prod.imageAlt} className=" bg-white m-1 mt-2 rounded-lg sm:w-24 p-4 h-40 max-h-52 md:w-2/5 md:h-auto object-contain" />
+                                                                <div className="flex flex-col p-4">
+                                                                    <h2 className="text-md font-bold">{prod.name}</h2>
+                                                                    <p className='text-sm'>Precio unit: $ {prod.price}</p>
+                                                                    <p className='text-sm'>Precio total: $ {prod.price * prod.cantidad}</p>
+                                                                    <p className='text-sm'>Cantidad: {prod.cantidad}</p>
+                                                                    <button onClick={() => eliminarProducto(prod.id)} className="text-md text-white rounded-md w-fit bg-rojo py-1 px-2 flex mt-auto"><FontAwesomeIcon icon={faTrashCan} /></button>
+                                                                </div>
+                                                            </div>
+                                                        ))
+                                                    }
+                                                    {carrito.length > 0 ?
+                                                        <div className="mr-3 flex flex-col justify-end items-end">
+                                                            <h2 className="ml-8 mb-3 w-full flex justify-end mt-8 font-semibold text-black bg-white p-2 px-6 sm:text-lg rounded-md">Precio Total: $ {precioTotal()}</h2>
+                                                            <div className="flex flex-col w-full justify-between sm:flex-row">
+                                                                <Link to="/checkout" className="text-md text-center w-full mr-1 mb-2 text-white rounded-md border-2 border-verdeOscuro bg-verdeOscuro hover:bg-white hover:text-verdeOscuro duration-300 p-2"><FontAwesomeIcon icon={faBagShopping} /> Finalizar Compra</Link>
+                                                                <button className="text-md w-full mb-2 text-white rounded-md border-2 border-rojo bg-rojo hover:bg-white hover:text-rojo duration-300 p-2" onClick={handleVaciar}><FontAwesomeIcon icon={faTrashCan} /> Vaciar Carrito</button>
+                                                            </div>
+                                                        </div> :
+                                                        <p className="sm:pl-8 pt-4 text-2xl text-rojo font-bold">El carrito esta vacio!</p>
+                                                    }
+                                                </div>
+                                            </div>
                                         </div>
                                     </Dialog.Panel>
                                 </Transition.Child>

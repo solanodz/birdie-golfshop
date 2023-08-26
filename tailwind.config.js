@@ -11,7 +11,9 @@ export default {
       'white': '#FFFFFF',
       'verdeOscuro': '#006600',
       'verdeClaro': '#5ec561',
-      'gris': '#c8c8c8'
+      'gris': '#ececec',
+      'grisOscuro': '#cecece',
+      'rojo': 'rgb(220 38 38)'
     },
   },
   plugins: [],
