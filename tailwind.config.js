@@ -15,6 +15,9 @@ export default {
       'grisOscuro': '#cecece',
       'rojo': 'rgb(220 38 38)'
     },
+    fontFamily: {
+      'heading': 'Dela Gothic One',
+    }
   },
   plugins: [],
 }
