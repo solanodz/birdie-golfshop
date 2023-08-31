@@ -20,7 +20,7 @@ const Cart = () => {
     return (
         <div>
 
-            {/* <Link to="/carrito"> */}<FontAwesomeIcon
+            <FontAwesomeIcon
                 icon={faCartShopping}
                 style={{ color: "#ffffff", }}
                 size='lg'
@@ -29,8 +29,6 @@ const Cart = () => {
             >
             </FontAwesomeIcon>
             <span className='pl-3 pr-1'>{cantidadEnCarrito()}</span>
-            {/* </Link> */}
-            {/* ------------------------------------------------------------------------------------------ */}
             <Transition.Root show={open} as={Fragment}>
                 <Dialog as="div" className="relative z-10" onClose={setOpen}>
                     <Transition.Child

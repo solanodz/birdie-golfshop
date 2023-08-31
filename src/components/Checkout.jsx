@@ -1,37 +1,29 @@
-import React, { useContext, useState } from 'react'
+import { useContext, useState } from 'react'
 import { CartContext } from '../context/CartContext';
 import { useForm } from 'react-hook-form';
-import { collection, addDoc, doc } from 'firebase/firestore';
+import { collection, addDoc } from 'firebase/firestore';
 import { db } from '../firebase/config';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleCheck } from '@fortawesome/free-solid-svg-icons';
-
-
 import { Fragment, useRef } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 
 
 const Checkout = () => {
+
     const [open, setOpen] = useState(true)
-
     const cancelButtonRef = useRef(null)
-
     const [pedidoId, setPedidoId] = useState("")
-
-    const { carrito, precioTotal, vaciarCarrito, eliminarProducto } = useContext(CartContext);
-
+    const { carrito, precioTotal, vaciarCarrito } = useContext(CartContext);
     const { register, handleSubmit } = useForm();
-
     const comprar = (data) => {
         const pedido = {
+            /* Estos son los campos que vamos a ver en Firestore */
             cliente: data,
             productos: carrito,
             total: precioTotal(),
         }
-        console.log(pedido)
-
         const pedidosRef = collection(db, "pedidos");
-
         addDoc(pedidosRef, pedido)
             .then((doc) => {
                 setPedidoId(doc.id)
@@ -54,7 +46,6 @@ const Checkout = () => {
                     >
                         <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
                     </Transition.Child>
-
                     <div className="fixed inset-0 z-10 overflow-y-auto">
                         <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
                             <Transition.Child
@@ -70,11 +61,8 @@ const Checkout = () => {
                                     <div className="bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
                                         <div className="sm:flex flex-col pl-auto sm:items-start">
                                             <div className="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10">
-                                                {/* <ExclamationTriangleIcon className="h-6 w-6 text-red-600" aria-hidden="true" /> */}
                                                 <FontAwesomeIcon
                                                     icon={faCircleCheck}
-                                                    // color="#006600" // Cambia el color primario del icono
-                                                    // secondaryColor="#5ec561" // Cambia el color secundario (solo para algunos iconos)
                                                     aria-hidden="true"
                                                     className='text-4xl text-verdeClaro bg-verdeOscuro rounded-full'
                                                 />
@@ -103,7 +91,6 @@ const Checkout = () => {
                                         >
                                             Aceptar
                                         </button>
-
                                     </div>
                                 </Dialog.Panel>
                             </Transition.Child>
@@ -114,23 +101,17 @@ const Checkout = () => {
         )
     }
 
-
-
-
     return (
         <div className=' items-center pt-40 flex flex-col'>
             <h1 className='text-3xl font-bold mb-4'>Finalizar Compra</h1>
             <form className='flex flex-col' onSubmit={handleSubmit(comprar)}>
-
                 <input className='w-80 border-2 border-black rounded-md my-1 p-1' type="text" placeholder='Ingresa tu nombre' {...register("nombre")} />
                 <input className='w-80 border-2 border-black rounded-md my-1 p-1' type="email" placeholder='Ingresa tu e-mail' {...register("email")} />
                 <input className='w-80 border-2 border-black rounded-md my-1 p-1' type="phone" placeholder='Ingresa tu teléfono' {...register("number")} />
                 <button className='w-fit px-4 py-1 bg-verdeOscuro rounded-md ml-auto font-medium text-white' type='submit'>Comprar</button>
-
             </form>
         </div>
     )
 }
-
 
 export default Checkout

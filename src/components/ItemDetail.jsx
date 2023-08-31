@@ -9,17 +9,13 @@ const ItemDetail = ({ item }) => {
 
     const { carrito, agregarAlCarrito } = useContext(CartContext)
     console.log(carrito)
-
     const [cantidad, setCantidad] = useState(1)
-
     const handleSumar = () => {
         cantidad < item.stock && setCantidad(cantidad + 1)
     }
-
     const handleRestar = () => {
         cantidad > 1 && setCantidad(cantidad - 1)
     }
-
 
     return (
         <div className="flex justify-center items-center min-h-screen">
