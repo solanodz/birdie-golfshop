@@ -9,22 +9,18 @@ const ItemListContainer = () => {
     const [productos, setProductos] = useState([])
     const category = useParams().category
 
-
     useEffect(() => {
         const productosRef = collection(db, "items")
-
         const q = category ? query(productosRef, where("category", "==", category)) : productosRef
-
         getDocs(q)
             .then((resp) => {
-
                 setProductos(
                     resp.docs.map((doc) => {
                         return { ...doc.data(), id: doc.id }
                     })
                 )
             })
-    })
+    }, [category])
 
     return (
         <div>

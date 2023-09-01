@@ -1,6 +1,6 @@
 
 import { Link } from "react-router-dom";
-import logoBirdie from "../assets/logos/pajaritosolo.png"
+import logoBirdie from "/public/assets/logos/pajaritosolo.png"
 import Cart from './Cart'
 import "/src/index.css"
 import { useState } from "react";

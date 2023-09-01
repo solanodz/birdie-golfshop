@@ -1,5 +1,5 @@
 
-import fondoHero from '../assets/fondos/fondo-hero.jpg'
+import fondoHero from '/public/assets/fondos/fondo-hero.jpg'
 
 const Hero = () => {
     const FondoHeroStyle = {
