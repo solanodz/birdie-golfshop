@@ -1,6 +1,6 @@
 # Birdie - Golfshop
 
-![Logo Birdie - Golfshop](/src/assets/logos/icon.png)
+![Logo Birdie - Golfshop](/public/assets/logos/icon.png)
 
 ## Descripción
 
