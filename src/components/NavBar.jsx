@@ -61,17 +61,18 @@ const NavBar = () => {
                         </button>
 
                         <ul
+
                             id="navbar"
                             className={`${isOpen ? 'flex' : 'hidden'
                                 } md:flex md:flex-row flex-col md:justify-center items-center`}
                         >
-                            <li className=" lg:mx-4 p-3 text-black cursor-pointer font-medium hover:text-verdeOscuro"><Link to="/productos/bolsas">Bolsas</Link></li>
-                            <li className=" lg:mx-4 p-3 text-black cursor-pointer font-medium hover:text-verdeOscuro"><Link to="/productos/drives">Drives</Link></li>
-                            <li className=" lg:mx-4 p-3 text-black cursor-pointer font-medium hover:text-verdeOscuro"><Link to="/productos/maderas">Maderas</Link></li>
-                            <li className=" lg:mx-4 p-3 text-black cursor-pointer font-medium hover:text-verdeOscuro"><Link to="/productos/hierros">Hierros</Link></li>
-                            <li className=" lg:mx-4 p-3 text-black cursor-pointer font-medium hover:text-verdeOscuro"><Link to="/productos/wedges">Wedges</Link></li>
-                            <li className=" lg:mx-4 p-3 text-black cursor-pointer font-medium hover:text-verdeOscuro"><Link to="/productos/putters">Putters</Link></li>
-                            <li className=" lg:mx-4 p-3 text-black cursor-pointer font-medium hover:text-verdeOscuro"><Link to="/contacto">Contacto</Link></li>
+                            <li onClick={() => setIsOpen(false)} className=" lg:mx-4 p-3 text-black cursor-pointer font-medium hover:text-verdeOscuro"><Link to="/productos/bolsas">Bolsas</Link></li>
+                            <li onClick={() => setIsOpen(false)} className=" lg:mx-4 p-3 text-black cursor-pointer font-medium hover:text-verdeOscuro"><Link to="/productos/drives">Drives</Link></li>
+                            <li onClick={() => setIsOpen(false)} className=" lg:mx-4 p-3 text-black cursor-pointer font-medium hover:text-verdeOscuro"><Link to="/productos/maderas">Maderas</Link></li>
+                            <li onClick={() => setIsOpen(false)} className=" lg:mx-4 p-3 text-black cursor-pointer font-medium hover:text-verdeOscuro"><Link to="/productos/hierros">Hierros</Link></li>
+                            <li onClick={() => setIsOpen(false)} className=" lg:mx-4 p-3 text-black cursor-pointer font-medium hover:text-verdeOscuro"><Link to="/productos/wedges">Wedges</Link></li>
+                            <li onClick={() => setIsOpen(false)} className=" lg:mx-4 p-3 text-black cursor-pointer font-medium hover:text-verdeOscuro"><Link to="/productos/putters">Putters</Link></li>
+                            <li onClick={() => setIsOpen(false)} className=" lg:mx-4 p-3 text-black cursor-pointer font-medium hover:text-verdeOscuro"><Link to="/contacto">Contacto</Link></li>
                             {/* <li className=" lg:mx-4 p-3 text-black cursor-pointer font-medium hover:text-verdeOscuro"><Link to="/carrito"> Carrito</Link></li> */}
                         </ul>
                     </nav>

@@ -21,7 +21,14 @@ const ItemCount = ({ cantidad, handleSumar, handleRestar, handleAgregar }) => {
                         –
                     </button>
                 </div>
-                <button onClick={handleAgregar} className="text-white bg-verdeOscuro border-2 border-verdeOscuro hover:bg-white hover:text-verdeOscuro duration-300 py-1 px-3 rounded-md mt-4">Agregar al Carrito</button>
+                <button
+                    onClick={handleAgregar}
+                    type="submit"
+                    className="text-white bg-verdeOscuro border-2 border-verdeOscuro hover:bg-white hover:text-verdeOscuro duration-300 py-1 px-3 rounded-md mt-4"
+                >
+                    Agregar al Carrito
+                </button>
+
             </div>
         </div>
     )

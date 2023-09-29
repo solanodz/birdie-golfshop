@@ -10,9 +10,7 @@ import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
 const Cart = () => {
     const [open, setOpen] = useState(false);
     const { cantidadEnCarrito } = useContext(CartContext)
-
     const { carrito, precioTotal, vaciarCarrito, eliminarProducto } = useContext(CartContext);
-
     const handleVaciar = () => {
         vaciarCarrito();
     }
@@ -103,7 +101,7 @@ const Cart = () => {
                                                         <div className="mr-3 flex flex-col justify-end items-end">
                                                             <h2 className="ml-8 mb-3 w-full flex justify-end mt-8 font-semibold text-black bg-white p-2 px-6 sm:text-lg rounded-md">Precio Total: $ {precioTotal()}</h2>
                                                             <div className="flex flex-col w-full justify-between sm:flex-row">
-                                                                <Link to="/checkout" className="text-md text-center w-full mr-1 mb-2 text-white rounded-md border-2 border-verdeOscuro bg-verdeOscuro hover:bg-white hover:text-verdeOscuro duration-300 p-2"><FontAwesomeIcon icon={faBagShopping} /> Finalizar Compra</Link>
+                                                                <Link to="/checkout" className="text-md text-center w-full mr-1 mb-2 text-white rounded-md border-2 border-verdeOscuro bg-verdeOscuro hover:bg-white hover:text-verdeOscuro duration-300 p-2" onClick={() => setOpen(false)}><FontAwesomeIcon icon={faBagShopping} /> Finalizar Compra</Link>
                                                                 <button className="text-md w-full mb-2 text-white rounded-md border-2 border-rojo bg-rojo hover:bg-white hover:text-rojo duration-300 p-2" onClick={handleVaciar}><FontAwesomeIcon icon={faTrashCan} /> Vaciar Carrito</button>
                                                             </div>
                                                         </div> :

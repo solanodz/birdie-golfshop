@@ -8,7 +8,6 @@ import { faCircleCheck } from '@fortawesome/free-solid-svg-icons';
 import { Fragment, useRef } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 
-
 const Checkout = () => {
 
     const [open, setOpen] = useState(true)
