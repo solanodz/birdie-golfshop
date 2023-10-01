@@ -10,6 +10,7 @@ import { Dialog, Transition } from '@headlessui/react'
 import fondoHero from '/public/assets/fondos/fondo-hero.jpg'
 import { useNavigate } from 'react-router-dom';
 import Reveal from './Reveal';
+import logoBlanco from '/public/assets/logos/blanco.png'
 
 const Checkout = () => {
     const FondoHeroStyle = {
@@ -56,7 +57,7 @@ const Checkout = () => {
                         <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
                     </Transition.Child>
                     <div className="fixed inset-0 z-10 overflow-y-auto">
-                        <div style={FondoHeroStyle} className="flex min-h-full items-end bg-transparent justify-center p-4 text-center sm:items-center sm:p-0">
+                        <div style={FondoHeroStyle} className="flex min-h-full items-center bg-transparent justify-center p-4 text-center sm:items-center sm:p-0">
                             <Transition.Child
                                 as={Fragment}
                                 enter="ease-out duration-300"
@@ -115,15 +116,20 @@ const Checkout = () => {
     }
 
     return (
-        <div style={FondoHeroStyle} className='h-screen items-center pt-40 flex flex-col'>
+        <div style={FondoHeroStyle} className='flex md:flex-row flex-col-reverse h-screen justify-between items-center pt-0'>
+            <div className="w-1/3 mx-auto sm:mx-auto">
+                <Reveal>
+                    <img src={logoBlanco} alt="" />
+                </Reveal>
+            </div>
             <Reveal>
-                <div className='items-center text-center border border-grisOscuro mx-auto bg-black bg-opacity-40 p-16 rounded-2xl shadow-2xl shadow-black flex flex-col'>
-                    <h1 className='text-4xl text-white font-regular mb-12'>Finalizar Compra</h1>
-                    <form className='flex flex-col' onSubmit={handleSubmit(comprar)}>
-                        <input className='font-light w-80 border text-gris bg-transparente border-grisOscuro placeholder:italic placeholder:text-grisOscuro rounded-md my-1 px-2 py-1' type="text" placeholder='Ingresa tu nombre' {...register("nombre")} />
-                        <input className='font-light w-80 border text-gris bg-transparente border-grisOscuro placeholder:italic placeholder:text-grisOscuro rounded-md my-1 px-2 py-1' type="email" placeholder='Ingresa tu e-mail' {...register("email")} />
-                        <input className='font-light w-80 border text-gris bg-transparente border-grisOscuro placeholder:italic placeholder:text-grisOscuro rounded-md my-1 px-2 py-1' type="phone" placeholder='Ingresa tu teléfono' {...register("number")} />
-                        <button className='w-fit px-4 py-1 bg-verdeOscuro rounded-md ml-auto font-medium text-white' type='submit'>Comprar</button>
+                <div className="text-center items-center border border-grisOscuro mx-auto bg-white px-6 sm:px-24 mt-28 sm:mt-24 h-screen pr-screen shadow-2xl shadow-black flex flex-col">
+                    <h1 className='text-3xl pt-12 text-black font-regular mb-12'>Finalizar Compra</h1>
+                    <form className='flex flex-col w-max' onSubmit={handleSubmit(comprar)}>
+                        <input className='font-light text-sm w-64 sm:w-80 border text-black bg-transparente border-grisOscuro placeholder:italic placeholder:text-grisOscuro rounded-md my-1 px-2 py-1.5' type="text" placeholder='Ingresa tu nombre' {...register("nombre")} />
+                        <input className='font-light text-sm w-64 sm:w-80 border text-black bg-transparente border-grisOscuro placeholder:italic placeholder:text-grisOscuro rounded-md my-1 px-2 py-1.5' type="email" placeholder='Ingresa tu e-mail' {...register("email")} />
+                        <input className='font-light text-sm w-64 sm:w-80 border text-black bg-transparente border-grisOscuro placeholder:italic placeholder:text-grisOscuro rounded-md my-1 px-2 py-1.5' type="phone" placeholder='Ingresa tu teléfono' {...register("number")} />
+                        <button className='w-fit mx-auto px-4 py-2 border-2 border-verdeOscuro bg-verdeOscuro hover:bg-transparente hover:text-verdeOscuro duration-200 rounded-md mt-6 font-medium text-white' type='submit'>Comprar</button>
                     </form>
                 </div>
             </Reveal>

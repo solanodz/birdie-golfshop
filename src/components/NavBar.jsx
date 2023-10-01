@@ -13,7 +13,7 @@ const NavBar = () => {
         setIsOpen(!isOpen);
     }
     return (
-        <div className="fixed w-full bg-gris border-b-2 border-grisOscuro mb-12 z-10">
+        <div className="fixed w-full bg-gris mb-12 z-10">
             <div className="mx-6 text-sm p-1 flex flex-col md:flex-row justify-between border-b-2 border-gris">
                 <div className="flex items-center justify-between sm:justify-around">
                     <Link to="/hero">

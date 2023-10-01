@@ -17,7 +17,6 @@ const Cart = () => {
 
     return (
         <div>
-
             <FontAwesomeIcon
                 icon={faCartShopping}
                 style={{ color: "#ffffff", }}

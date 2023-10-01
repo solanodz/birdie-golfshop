@@ -24,7 +24,7 @@ const ItemListContainer = () => {
 
     return (
         <Reveal>
-            <div className='h-screen mt-20'>
+            <div className='mt-28'>
                 <ItemList titulo={category} productos={productos} />
             </div>
         </Reveal>
