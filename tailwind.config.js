@@ -7,12 +7,13 @@ export default {
   theme: {
     extend: {},
     colors: {
+      'transparente': 'transparent',
       'black': '#000000',
       'white': '#FFFFFF',
       'verdeOscuro': '#006600',
       'verdeClaro': '#5ec561',
       'gris': '#ececec',
-      'grisOscuro': '#cecece',
+      'grisOscuro': '#555555',
       'rojo': 'rgb(220 38 38)'
     },
     fontFamily: {

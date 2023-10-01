@@ -24,7 +24,7 @@ const ItemListContainer = () => {
 
     return (
         <Reveal>
-            <div>
+            <div className='h-screen mt-20'>
                 <ItemList titulo={category} productos={productos} />
             </div>
         </Reveal>

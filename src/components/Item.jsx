@@ -9,12 +9,12 @@ const Item = ({ producto }) => {
                 <h2 className="sr-only">Products</h2>
                 <Reveal>
                     <div className="group border-gris h-fit border p-2 rounded-md">
-                        <div className="object-fit aspect-h-1 aspect-w-1 w-full  overflow-hidden bg-gray-200 xl:aspect-h-8 xl:aspect-w-7">
-                            <div>
+                        <div className="object-fit aspect-h-1 sm:w-70 aspect-w-1 w-full overflow-hidden bg-gray-200 xl:aspect-h-8 xl:aspect-w-7">
+                            <div className="w-50 items-center">
                                 <img
                                     src={producto.href}
                                     alt={producto.imagenAlt}
-                                    className="h-full w-full object-contain object-center"
+                                    className="h-full w-50 sm:w-max object-contain object-center"
                                     style={{ aspectRatio: '1 / 1' }}
                                 />
                             </div>
