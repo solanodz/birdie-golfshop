@@ -2,7 +2,6 @@
 import { Link } from "react-router-dom";
 import logoBirdie from "../assets/pajaritosolo.png"
 import Cart from './Cart'
-import "/src/index.css"
 
 import MaxWidthWrapper from './MaxWidthWrapper'
 import { buttonVariants } from './ui/button'
@@ -12,7 +11,7 @@ import {
     NavigationMenuItem,
     NavigationMenuList,
     NavigationMenuTrigger,
-} from "@/components/ui/navigation-menu"
+} from "./ui/navigation-menu"
 
 const components = [
     {
