@@ -1,7 +1,7 @@
 
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './index.css';
-import Navbar from './components/Navbar';
+import NavBar from './components/Navbar';
 import ItemListContainer from './pages/ItemListContainer';
 import ItemDetailContainer from './pages/ItemDetailContainer';
 import ItemList from './components/ItemList';
@@ -25,8 +25,9 @@ function App() {
                     reverseOrder={false}
                 />
                 <CartProvider>
+
                     <BrowserRouter>
-                        <Navbar />
+                        <NavBar />
                         <Routes>
                             <Route path="/" element={<Hero />} />
                             <Route path="/hero" element={<Hero />} />

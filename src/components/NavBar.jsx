@@ -47,7 +47,7 @@ const components = [
 ]
 
 
-const Navbar = () => {
+const NavBar = () => {
 
     return (
         <div>
@@ -92,4 +92,4 @@ const Navbar = () => {
     );
 }
 
-export default Navbar
+export default NavBar
