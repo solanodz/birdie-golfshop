@@ -4,6 +4,9 @@ import { defineConfig } from "vite"
 import process from "process"
 
 export default defineConfig({
+  build: {
+    sourcemap: false,
+  },
   plugins: [react()],
   base: "https://solanodz.github.io/",
   resolve: {
