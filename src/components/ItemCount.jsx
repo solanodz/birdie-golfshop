@@ -1,34 +1,42 @@
-
 // eslint-disable-next-line react/prop-types
+import { FaMinus, FaPlus } from "react-icons/fa6";
+import { Button } from "./ui/button";
+import { toast } from "sonner";
+
+
 const ItemCount = ({ cantidad, handleSumar, handleRestar, handleAgregar }) => {
 
 
     return (
         <div>
-            <div className='flex flex-col'>
-                <div className='flex items-center flex-row'>
-                    <button
+            <div className='flex flex-col gap-4 w-full'>
+                <div className='flex items-center my-auto flex-row'>
+                    <Button
+                        variant='ghost'
                         onClick={handleSumar}
-                        className="text-black bg-white border-2 border-black hover:bg-black hover:text-white duration-300 font-semibold h-fit px-2 py-0.5 rounded-md"
+                        size='sm'
                     >
-                        +
-                    </button>
-                    <p className='mt-1 px-5 font-regular text-black text-2xl'>{cantidad}</p>
-                    <button
+                        <FaPlus />
+                    </Button>
+                    <p className='m-1 px-5 font-semibold p-1 bg-gray-100 rounded-lg text-xl'>{cantidad}</p>
+                    <Button
+                        variant='ghost'
                         onClick={handleRestar}
-                        className="text-black bg-white border-2 border-black hover:bg-black hover:text-white duration-300 font-black h-fit px-2 py-0.5 rounded-md"
+                        size='sm'
                     >
-                        –
-                    </button>
+                        <FaMinus />
+                    </Button>
                 </div>
-                <button
-                    onClick={handleAgregar}
+                <Button
                     type="submit"
-                    className="text-white bg-black border-2 border-black hover:bg-white hover:text-black duration-300 py-1 px-3 rounded-md mt-4"
+                    onClick={() => {
+                        handleAgregar();
+                        toast.success('Producto agregado al carrito exitosamente');
+                    }}
+                    className='w-full'
                 >
                     Agregar al Carrito
-                </button>
-
+                </Button>
             </div>
         </div>
     )

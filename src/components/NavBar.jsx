@@ -1,19 +1,124 @@
 
 import { Link } from "react-router-dom";
-import logoBirdie from "/public/assets/logos/pajaritosolo.png"
+import logoBirdie from "../assets/pajaritosolo.png"
 import Cart from './Cart'
 import "/src/index.css"
-import { useState } from "react";
 
-const NavBar = () => {
+import MaxWidthWrapper from './MaxWidthWrapper'
+import { buttonVariants } from './ui/button'
+import {
+    NavigationMenu,
+    NavigationMenuContent,
+    NavigationMenuIndicator,
+    NavigationMenuItem,
+    NavigationMenuLink,
+    NavigationMenuList,
+    NavigationMenuTrigger,
+    NavigationMenuViewport,
+} from "@/components/ui/navigation-menu"
+import { BsFillInfoCircleFill } from "react-icons/bs";
 
-    const [isOpen, setIsOpen] = useState(false)
+const components = [
+    {
+        id: 1,
+        title: 'Bolsas',
+        category: 'bolsas',
+        // description:
+        //     <Link to="/productos/bolsas">Bolsas mochila con apoyo trípode, livianas con multiples compartimentos y bolsillos para guardar tus accesorios de golf.</Link>,
+    },
+    {
+        id: 2,
+        title: 'Drives',
+        category: 'drives',
+        // description:
+        //     <Link to="/productos/drives">Drives de golf con loft regulable, varas de distintos pesos y flexibilidad, con la mejor calidad del mercado.</Link>,
+    },
+    {
+        id: 3,
+        title: 'Maderas',
+        category: 'maderas',
+        // description:
+        //     <Link to="/productos/maderas">Maderas 3 y 5 con distintos grados de loft, con varas de distintos pesos y flexibilidad.</Link>,
+    },
+    {
+        id: 4,
+        title: 'Hierros',
+        category: 'hierros',
+        // description: <Link to="/productos/hierros">Hierros de hoja con varas de acero o grafito con distintos pesos y flexibilidad.</Link>,
+    },
+    {
+        id: 5,
+        title: 'Wedges',
+        category: 'wedges',
+        // description:
+        //     <Link to="/productos/wedges">Wedges desde 48° a 60° con varas de acero y estrías bien marcadas para un mejor control de la pelota.</Link>,
+    },
+    {
+        id: 6,
+        title: 'Putters',
+        category: 'putters',
+        // description:
+        //     <Link to="/productos/putters">Putters grandes o chicos con grips de distintos tamaños y formas.</Link>,
+    },
+]
+
+
+const Navbar = () => {
+
+    /* const [isOpen, setIsOpen] = useState(false)
 
     const toggleMenu = () => {
         setIsOpen(!isOpen);
-    }
+    } */
+
+
     return (
-        <div className="fixed w-full bg-gris mb-12 z-10">
+        <div>
+
+            <MaxWidthWrapper className='md:block border-b border-gray-300 py-3'>
+                <nav className='flex items-center justify-between'>
+                    <div className="flex gap-6">
+                        <Link to={'/'}>
+                            <img src={logoBirdie} alt='logo' className='w-10' />
+                        </Link>
+                        <div className='flex gap-4'>
+                            <NavigationMenu>
+                                <NavigationMenuList>
+                                    <NavigationMenuItem>
+                                        <NavigationMenuTrigger>Productos</NavigationMenuTrigger>
+                                        <NavigationMenuContent size='sm' className='w-fit'>
+                                            <ul className="grid w-[200px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
+                                                {components.map((component) => (
+                                                    <Link to={`/productos/${component.category}`} key={component.id} className='text-zinc-700 hover:bg-green-100 duration-200 p-2 rounded-lg text-sm '>
+                                                        <h2 className='w-max font-semibold cursor-pointer'>{component.title}</h2>
+                                                        {/* <p >{component.description}</p> */}
+                                                    </Link>
+                                                ))}
+                                            </ul>
+                                        </NavigationMenuContent>
+                                    </NavigationMenuItem>
+                                    <NavigationMenuItem className="hidden sm:flex">
+                                        <Link to={'/contact'} className={buttonVariants({ variant: 'ghost' })}>Contactanos</Link>
+                                    </NavigationMenuItem>
+                                    {/* <NavigationMenuItem>
+                                    <Link to={'/register'} className={buttonVariants({ variant: 'ghost' })}>Registrarse</Link>
+                                </NavigationMenuItem> */}
+                                </NavigationMenuList>
+                            </NavigationMenu>
+                        </div>
+                    </div>
+                    <div className="flex gap-6 text-xl">
+                        <Cart />
+                    </div>
+                </nav>
+            </MaxWidthWrapper >
+            <div>
+
+            </div>
+        </div>
+    );
+}
+{/* <div className="fixed w-full bg-gris mb-12 z-10">
             <div className="mx-6 text-sm p-1 flex flex-col md:flex-row justify-between border-b-2 border-gris">
                 <div className="flex items-center justify-between sm:justify-around">
                     <Link to="/hero">
@@ -73,14 +178,12 @@ const NavBar = () => {
                             <li onClick={() => setIsOpen(false)} className=" lg:mx-4 p-3 text-black cursor-pointer font-medium hover:text-verdeOscuro"><Link to="/productos/wedges">Wedges</Link></li>
                             <li onClick={() => setIsOpen(false)} className=" lg:mx-4 p-3 text-black cursor-pointer font-medium hover:text-verdeOscuro"><Link to="/productos/putters">Putters</Link></li>
                             <li onClick={() => setIsOpen(false)} className=" lg:mx-4 p-3 text-black cursor-pointer font-medium hover:text-verdeOscuro"><Link to="/contacto">Contacto</Link></li>
-                            {/* <li className=" lg:mx-4 p-3 text-black cursor-pointer font-medium hover:text-verdeOscuro"><Link to="/carrito"> Carrito</Link></li> */}
                         </ul>
                     </nav>
 
                 </div>
             </div>
-        </div>
-    );
-}
+        </div>  */}
 
-export default NavBar
+
+export default Navbar

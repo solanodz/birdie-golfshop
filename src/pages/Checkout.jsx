@@ -7,18 +7,15 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleCheck } from '@fortawesome/free-solid-svg-icons';
 import { Fragment, useRef } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
-import fondoHero from '/public/assets/fondos/fondo-hero.jpg'
 import { useNavigate } from 'react-router-dom';
-import Reveal from './Reveal';
-import logoBlanco from '/public/assets/logos/blanco.png'
+import Reveal from '../components/Reveal';
+import logo from '../assets/pajaritosolo.png'
+import { Button } from '../components/ui/button';
+import { Input } from '../components/ui/input';
+import { Label } from '../components/ui/label';
+import MaxWidthWrapper from '../components/MaxWidthWrapper';
 
 const Checkout = () => {
-    const FondoHeroStyle = {
-        backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url(${fondoHero})`,
-        backgroundAttachment: 'fixed',
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-    };
 
     const navigate = useNavigate()
     const [open, setOpen] = useState(true)
@@ -26,6 +23,8 @@ const Checkout = () => {
     const [pedidoId, setPedidoId] = useState("")
     const { carrito, precioTotal, vaciarCarrito } = useContext(CartContext);
     const { register, handleSubmit } = useForm();
+
+
     const comprar = (data) => {
         const pedido = {
             /* Estos son los campos que vamos a ver en Firestore */
@@ -40,6 +39,7 @@ const Checkout = () => {
                 vaciarCarrito()
             })
     }
+
 
     if (pedidoId) {
         return (
@@ -57,7 +57,7 @@ const Checkout = () => {
                         <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
                     </Transition.Child>
                     <div className="fixed inset-0 z-10 overflow-y-auto">
-                        <div style={FondoHeroStyle} className="flex min-h-full items-center bg-transparent justify-center p-4 text-center sm:items-center sm:p-0">
+                        <div className="flex min-h-full items-center bg-transparent justify-center p-4 text-center sm:items-center sm:p-0">
                             <Transition.Child
                                 as={Fragment}
                                 enter="ease-out duration-300"
@@ -72,11 +72,11 @@ const Checkout = () => {
                                     <Reveal>
                                         <div className="bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
                                             <div className="sm:flex flex-col pl-auto sm:items-start">
-                                                <div className="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10">
+                                                <div className="mx-auto pl-7 flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full sm:mx-0 sm:h-10 sm:w-10">
                                                     <FontAwesomeIcon
                                                         icon={faCircleCheck}
                                                         aria-hidden="true"
-                                                        className='text-4xl text-verdeClaro bg-verdeOscuro rounded-full'
+                                                        className='text-4xl rounded-full'
                                                     />
                                                 </div>
                                                 <div className="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left">
@@ -95,14 +95,13 @@ const Checkout = () => {
                                                 </div>
                                             </div>
                                         </div>
-                                        <div className="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
-                                            <button
+                                        <div className="px-4 py-3 text-right sm:flex sm:flex-row-reverse sm:p-3">
+                                            <Button
                                                 type="button"
-                                                className="inline-flex bg-verdeOscuro w-full justify-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-white hover:text-verdeOscuro duration-300 border-2 border-verdeOscuro sm:ml-3 sm:w-auto"
                                                 onClick={() => navigate('/hero')}
                                             >
                                                 Aceptar
-                                            </button>
+                                            </Button>
                                         </div>
                                     </Reveal>
                                 </Dialog.Panel>
@@ -116,24 +115,68 @@ const Checkout = () => {
     }
 
     return (
-        <div style={FondoHeroStyle} className='flex md:flex-row flex-col-reverse h-screen justify-between items-center pt-0'>
-            <div className="w-1/3 mx-auto sm:mx-auto">
-                <Reveal>
-                    <img src={logoBlanco} alt="" />
-                </Reveal>
-            </div>
-            <Reveal>
-                <div className="text-center items-center border border-grisOscuro mx-auto bg-white px-6 sm:px-24 mt-28 sm:mt-24 h-screen pr-screen shadow-2xl shadow-black flex flex-col">
-                    <h1 className='text-3xl pt-12 text-black font-regular mb-12'>Finalizar Compra</h1>
-                    <form className='flex flex-col w-max' onSubmit={handleSubmit(comprar)}>
-                        <input className='font-light text-sm w-64 sm:w-80 border text-black bg-transparente border-grisOscuro placeholder:italic placeholder:text-grisOscuro rounded-md my-1 px-2 py-1.5' type="text" placeholder='Ingresa tu nombre' {...register("nombre")} />
-                        <input className='font-light text-sm w-64 sm:w-80 border text-black bg-transparente border-grisOscuro placeholder:italic placeholder:text-grisOscuro rounded-md my-1 px-2 py-1.5' type="email" placeholder='Ingresa tu e-mail' {...register("email")} />
-                        <input className='font-light text-sm w-64 sm:w-80 border text-black bg-transparente border-grisOscuro placeholder:italic placeholder:text-grisOscuro rounded-md my-1 px-2 py-1.5' type="phone" placeholder='Ingresa tu teléfono' {...register("number")} />
-                        <button className='w-fit mx-auto px-4 py-2 border-2 border-verdeOscuro bg-verdeOscuro hover:bg-transparente hover:text-verdeOscuro duration-200 rounded-md mt-6 font-medium text-white' type='submit'>Comprar</button>
-                    </form>
-                </div>
-            </Reveal>
-        </div>
+        <MaxWidthWrapper className='mt-12 text-center'>
+            <img src={logo} alt="logo Birdie" className='w-20 mx-auto my-3' />
+            <h2 className='font-semibold text-3xl font-montserrat'>Ingresa tus datos para finalizar la compra</h2>
+            <form
+                className='my-4 grid grid-flow-row sm:grid-flow-col gap-8 items-center text-left'
+                onSubmit={handleSubmit(comprar)}
+            >
+                <section className='flex flex-col gap-2'>
+                    <article className='flex flex-col gap-2'>
+                        <Label htmlFor="name">Nombre completo</Label>
+                        <Input name='full_name' required type="text" placeholder='Ingresa tu nombre completo' {...register("name")} />
+                        <div className='flex gap-2 justify-between w-full'>
+                            <div className='w-full'>
+                                <Label htmlFor="email">E-mail</Label>
+                                <Input name='email' required type="email" placeholder='Ingresa tu e-mail' {...register("email")} />
+                            </div>
+                            <div className='w-full'>
+                                <Label htmlFor="number">Teléfono</Label>
+                                <Input name='phone' required type="tel" placeholder='Ingresa tu teléfono' {...register("number")} />
+                            </div>
+                        </div>
+                    </article>
+                    <article>
+
+                        <div>
+                            <Label htmlFor="country">País</Label>
+                            <Input name='country' required type="text" placeholder='País de residencia' {...register("country")} />
+                        </div>
+                        <div>
+                            <Label htmlFor="province">Provincia</Label>
+                            <Input name='province' required type="text" placeholder='Ingresa en que provincia vives' {...register("province")} />
+                        </div>
+                        <div>
+                            <Label htmlFor="zip-code">Código postal</Label>
+                            <Input name='zip_code' required type="number" placeholder='Ingresa tu codigo postal' {...register("zip-code")} />
+                        </div>
+                        <div>
+                            <Label htmlFor="address">Dirección</Label>
+                            <Input name='address' required type="text" placeholder='Ingresa tu dirección' {...register("address")} />
+                        </div>
+                    </article>
+                </section>
+                <section className='bg-green-100 border border-green-300 rounded-lg'>
+                    <div className='m-4'>
+                        <h3 className='font-semibold text-2xl font-montserrat'>Resumen de tu compra</h3>
+                        <ul name='purchase' className='rounded-md my-2 p-1 px-2 bg-green-200'>
+                            {carrito.map((prod) => (
+                                <li key={prod.id} className='flex justify-between'>
+                                    <div className='flex mx-'>
+                                        <p>{prod.name} x </p><p>{prod.cantidad}</p>
+                                    </div>
+                                    <p className='px-2'>${prod.price * prod.cantidad}</p>
+                                </li>
+                            ))}
+                        </ul>
+
+                        <p className='font-semibold text-right rounded-md my-2 p-1 px-2 bg-green-200 text-lg'>Total: ${precioTotal()}</p>
+                        <Button type='submit' className='w-full'>Comprar</Button>
+                    </div>
+                </section>
+            </form>
+        </MaxWidthWrapper >
     )
 }
 

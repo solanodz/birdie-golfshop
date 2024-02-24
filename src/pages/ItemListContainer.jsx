@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react'
-import ItemList from './ItemList'
+import ItemList from '../components/ItemList'
 import { useParams } from 'react-router-dom'
 import { collection, getDocs, query, where } from 'firebase/firestore'
 import { db } from '../firebase/config'
-import Reveal from './Reveal'
+import Reveal from '../components/Reveal'
+import MaxWidthWrapper from '../components/MaxWidthWrapper'
 const ItemListContainer = () => {
 
     const [productos, setProductos] = useState([])
@@ -24,10 +25,12 @@ const ItemListContainer = () => {
 
     return (
         <Reveal>
-            <div className='mt-28'>
-                <ItemList titulo={category} productos={productos} />
+            <div className='my-28 mx-auto justify-center flex'>
+                <div className='w-full'>
+                    <ItemList titulo={category} productos={productos} />
+                </div>
             </div>
-        </Reveal>
+        </Reveal >
     )
 }
 

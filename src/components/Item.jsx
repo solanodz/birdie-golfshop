@@ -1,15 +1,16 @@
 import { Link } from "react-router-dom";
 import Reveal from "./Reveal";
+import { Badge } from "./ui/badge";
 
 /* eslint-disable react/prop-types */
 const Item = ({ producto }) => {
     return (
-        <div className="bg-white">
-            <div className="mx-auto max-w-xl px-4 py-4 sm:px-4 sm:py-8 lg:max-w-6xl lg:px-4">
+        <div className="rounded-xl shadow-lg border border-gray-200 ">
+            <div className="p-3 flex flex-col">
                 <h2 className="sr-only">Products</h2>
                 <Reveal>
-                    <div className="group border-gris h-fit border p-2 rounded-md">
-                        <div className="object-fit aspect-h-1 sm:w-70 aspect-w-1 w-full overflow-hidden bg-gray-200 xl:aspect-h-8 xl:aspect-w-7">
+                    <Link to={`/item/${producto.id}`} className=" h-fit p-2 rounded-md">
+                        <div className="object-fit aspect-h-1 sm:w-70 aspect-w-1 w-full overflow-hidden xl:aspect-h-8 xl:aspect-w-7">
                             <div className="w-50 items-center">
                                 <img
                                     src={producto.href}
@@ -19,15 +20,12 @@ const Item = ({ producto }) => {
                                 />
                             </div>
                             <div className="flex flex-col">
-                                <p className="bg-verdeClaro rounded-full w-fit px-2 text-verdeOscuro text-xs font-semibold">{producto.category}</p>
-                                <h3 className="mt-4 text-md h-12 text-black font-refgular">{producto.name}</h3>
+                                <Badge className='w-fit'>{producto.category}</Badge>
+                                <h3 className="mt-4 text-md h-12 text-black font-regular">{producto.name}</h3>
                             </div>
                             <p className="mt-1 text-xl py-2 font-medium text-black">$ {producto.price}</p>
-                            <div className="flex flex-row justify-between">
-                                <Link to={`/item/${producto.id}`} className="bg-black text-white p-1 px-3 rounded-md w-max mt-1">+ info</Link>
-                            </div>
                         </div>
-                    </div>
+                    </Link>
                 </Reveal>
             </div>
         </div>
