@@ -29,23 +29,6 @@ const Cart = () => {
         vaciarCarrito();
     }
 
-    /*     const createPreference = async () => {
-            try {
-                const response = await axios.post('http://localhost:8080/create_preference', {
-                    description: 'Compra en Birdie Golfshop',
-                    price: 100,
-                    quantity: 2,
-                    currency_id: 'ARS',
-                });
-    
-                const { id } = response.data;
-                return id;
-            } catch (error) {
-                console.log(error)
-            }
-        } */
-
-
     return (
         <Sheet>
             <SheetTrigger>

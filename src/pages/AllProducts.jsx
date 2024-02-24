@@ -1,4 +1,4 @@
-import React from 'react'
+/* eslint-disable react/prop-types */
 import Item from '../components/Item'
 
 const AllProducts = ({ productos }) => {

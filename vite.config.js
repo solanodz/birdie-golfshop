@@ -5,6 +5,7 @@ import process from "process"
 
 export default defineConfig({
   plugins: [react()],
+  base: "https://solanodz.github.io/birdie-golfshop",
   resolve: {
     alias: {
       "@": path.resolve(process.cwd(), "./src"),

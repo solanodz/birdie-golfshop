@@ -1,10 +1,6 @@
 
-// import Reveal from '../components/Reveal';
-// import fondoHero from '/public/assets/fondos/fondo-hero.jpg'
-// import logoBlanco from '/public/assets/logos/blanco.png'
-
 import MaxWidthWrapper from "@/components/MaxWidthWrapper";
-import { Button, buttonVariants } from "@/components/ui/button"
+import { buttonVariants } from "@/components/ui/button"
 import { FaTruckArrowRight } from "react-icons/fa6"
 import { MdOutlineSupportAgent } from "react-icons/md";
 import { TbArrowsDiff } from "react-icons/tb";

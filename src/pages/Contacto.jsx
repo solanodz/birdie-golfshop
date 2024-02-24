@@ -17,18 +17,16 @@ const Contacto = () => {
 
     const sendEmail = (e) => {
         e.preventDefault()
-        console.log(form.current);
         emailjs
             .sendForm('service_v1ecto3', 'template_w64ph7n', form.current, {
                 publicKey: 'tDxz1UdJiUIrLlWmZ',
             })
             .then(
                 () => {
-                    console.log('SUCCESS!');
                     toast.success('email enviado con éxito.')
                 },
                 (error) => {
-                    console.log('FAILED...', error.text);
+                    console.log(error)
                     toast.error('Ocurrió un error al enviar el email. Intente nuevamente')
                 },
             );

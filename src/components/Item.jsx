@@ -33,35 +33,3 @@ const Item = ({ producto }) => {
 };
 
 export default Item;
-
-
-{/* < div className="bg-white" >
-            <Reveal>
-                <div className="mx-auto border-2 border-gris rounded-lg m-2 max-w-2xl px-4 py-4 sm:px-4 sm:py-8 lg:max-w-6xl lg:px-4">
-                    <div className="group relative">
-                        <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-60">
-                            <img
-                                src={producto.href}
-                                alt={producto.imagenAlt}
-                                className="h-full w-full object-contain object-center"
-                                style={{ aspectRatio: '1 / 1' }}
-                            />
-                        </div>
-                        <div className="mt-4 flex justify-between">
-                            <div>
-
-                                <p className="mt-1 text-xs flex bg-verdeClaro text-verdeOscuro px-2 font-medium w-fit rounded-full ">{producto.category}</p>
-                                <h3 className="text-sm h-8 text-gray-700">
-                                    <span aria-hidden="true" className="absolute inset-0"></span>
-                                    {producto.name}
-                                </h3>
-                                <p className="text-lg mt-4 font-medium text-gray-900">{producto.price}</p>
-                                <div className="flex flex-row justify-between">
-                                    <Link to={`/item/${producto.id}`} className="bg-black text-white cursor-pointer p-1 px-3 rounded-md w-max mt-1">+ info</Link>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </Reveal>
-        </div > */}
