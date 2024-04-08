@@ -3,16 +3,50 @@ import { Dialog, Transition } from '@headlessui/react'
 import { XMarkIcon } from '@heroicons/react/24/outline'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faCartShopping, faBagShopping } from "@fortawesome/free-solid-svg-icons"
-import { Link } from 'react-router-dom'
 import { CartContext } from '../context/CartContext'
 import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
 
+
+import { initMercadoPago, Wallet } from '@mercadopago/sdk-react'
+import axios from 'axios'
+
+
+
+
 const Cart = () => {
+    initMercadoPago("TEST-e34757e5-e004-47ca-8aba-7fcb7117ef72")
+
+    const [preferenceId, setPreferenceId] = useState(null)
+
+
     const [open, setOpen] = useState(false);
     const { cantidadEnCarrito } = useContext(CartContext)
     const { carrito, precioTotal, vaciarCarrito, eliminarProducto } = useContext(CartContext);
     const handleVaciar = () => {
         vaciarCarrito();
+    }
+
+    const createPreference = async () => {
+        try {
+            const response = await axios.post('http://localhost:8080/create_preference', {
+                description: 'Compra en Birdie Golfshop',
+                price: 100,
+                quantity: 2,
+                currency_id: 'ARS',
+            });
+
+            const { id } = response.data;
+            return id;
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    const handleBuy = async () => {
+        const id = await createPreference();
+        if (id) {
+            setPreferenceId(id)
+        }
     }
 
     return (
@@ -100,9 +134,16 @@ const Cart = () => {
                                                         <div className="mr-3 flex flex-col justify-end items-end">
                                                             <h2 className="ml-8 mb-3 w-full flex justify-end mt-8 font-semibold text-black bg-white p-2 px-6 sm:text-lg rounded-md">Precio Total: $ {precioTotal()}</h2>
                                                             <div className="flex flex-col w-full justify-between sm:flex-row">
-                                                                <Link to="/checkout" className="text-md text-center w-full mr-1 mb-2 text-white rounded-md border-2 border-verdeOscuro bg-verdeOscuro hover:bg-white hover:text-verdeOscuro duration-300 p-2" onClick={() => setOpen(false)}><FontAwesomeIcon icon={faBagShopping} /> Finalizar Compra</Link>
+                                                                <button
+                                                                    type="button"
+                                                                    className="text-md text-center w-full mr-1 mb-2 text-white rounded-md border-2 border-verdeOscuro bg-verdeOscuro hover:bg-white hover:text-verdeOscuro duration-300 p-2"
+                                                                    onClick={handleBuy}><FontAwesomeIcon icon={faBagShopping} /> Finalizar Compra</button>
+                                                                {preferenceId && <Wallet inicialization={{ preferenceId }} />}
+
                                                                 <button className="text-md w-full mb-2 text-white rounded-md border-2 border-rojo bg-rojo hover:bg-white hover:text-rojo duration-300 p-2" onClick={handleVaciar}><FontAwesomeIcon icon={faTrashCan} /> Vaciar Carrito</button>
+
                                                             </div>
+
                                                         </div> :
                                                         <p className="sm:pl-8 pt-4 text-2xl text-rojo font-bold">El carrito esta vacio!</p>
                                                     }
