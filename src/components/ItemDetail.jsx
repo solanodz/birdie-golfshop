@@ -4,6 +4,8 @@ import { useState, useContext } from "react";
 import ItemCount from "./ItemCount";
 import { CartContext } from "../context/CartContext";
 import Reveal from "./Reveal";
+import MaxWidthWrapper from "./MaxWidthWrapper";
+import { Badge } from "./ui/badge";
 
 const ItemDetail = ({ item }) => {
 
@@ -18,39 +20,42 @@ const ItemDetail = ({ item }) => {
     }
 
     return (
-        <div className="flex justify-center items-center min-h-screen">
+        <MaxWidthWrapper className="flex justify-center items-center my-32 mx-auto">
             <Reveal>
-                <div className="bg-white border-2 border-gris shadow-lg rounded-lg p-4 xs:mt-40 md:p-6 mx-4 md:mx-0 md:max-w-2xl flex flex-col md:flex-row md:space-x-4">
+                <div className="flex sm:flex-row flex-col gap-20 mx-auto items-center justify-center">
                     <img
                         src={item.href}
                         alt={item.imagenAlt}
-                        className="w-full h-40 md:w-2/5 md:h-auto object-contain"
+                        className="object-fit align-center w-2/5 h-2/5 sm:w-1/5 sm:h-1/5 mx-auto sm:mx-0"
                     />
-                    <div className="md:w-3/5 md:pl-4 flex flex-col justify-between">
+                    <div className="md:w-3/5 md:pl-4 flex flex-col gap-6">
                         <div>
                             <Reveal>
-                                <h3 className="text-base md:text-xl py-2 font-semibold">{item.name}</h3>
+                                <h3 className="font-montserrat text-xl sm:text-3xl py-2 font-semibold">{item.name}</h3>
                             </Reveal>
                             <Reveal>
-                                <p className="bg-verdeClaro rounded-full w-fit px-4 text-verdeOscuro font-semibold">{item.category}</p>
+                                <Badge className="my-2">{item.category}</Badge>
                             </Reveal>
                         </div>
                         <Reveal>
-                            <p className="text-sm md:text-base text-gray-600">{item.description}</p>
+                            <p className="max-w-2xl text-sm md:text-base text-gray-600">{item.description}</p>
                         </Reveal>
                         <Reveal>
-                            <h4 className="text-xl font-regular text-verdeOscuro my-3 md:text-2xl mt-2">$ {item.price}</h4>
-                            <ItemCount
-                                cantidad={cantidad}
-                                handleSumar={handleSumar}
-                                handleRestar={handleRestar}
-                                handleAgregar={() => { agregarAlCarrito(item, cantidad) }}
-                            />
+                            <div className="flex flex-col gap-4 w-full">
+                                <h4 className="font-semibold text-xl">$ {item.price}</h4>
+                                <ItemCount
+                                    cantidad={cantidad}
+                                    handleSumar={handleSumar}
+                                    handleRestar={handleRestar}
+                                    handleAgregar={() => { agregarAlCarrito(item, cantidad) }}
+                                    className='w-full mx-auto'
+                                />
+                            </div>
                         </Reveal>
                     </div>
                 </div>
             </Reveal>
-        </div>
+        </MaxWidthWrapper>
     );
 }
 
